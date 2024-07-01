@@ -8,7 +8,6 @@ joblib
 matplotlib
 seaborn
 from-root
-gdown
 
 
 -e .

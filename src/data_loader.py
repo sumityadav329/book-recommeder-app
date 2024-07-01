@@ -3,12 +3,13 @@ import requests
 import sys
 import pandas as pd
 from src.exception import CustomException
-from src.logger  import logging
+from src.logger import logging
 
 def download_data(url: str, save_path: str):
     try:
         logging.info(f"Downloading data from {url}")
         response = requests.get(url)
+        response.raise_for_status() 
         with open(save_path, 'wb') as file:
             file.write(response.content)
         logging.info(f"Data downloaded successfully and saved to {save_path}")

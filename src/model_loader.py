@@ -1,22 +1,18 @@
-import gdown
 import os
+import sys
+import joblib
 from src.logger import logging
-from src.exception import CustomException 
+from src.exception import CustomException
 
-def download_models_from_gdrive(urls, save_dir):
+def load_models(model_paths: dict) -> dict:
+    models = {}
     try:
-        os.makedirs(save_dir, exist_ok=True)
-        
-        for name, url in urls.items():
-            save_path = os.path.join(save_dir, name)
-            logging.info(f"Downloading {name} from Google Drive: {url}")
-            gdown.download(url, save_path, quiet=False)
-            logging.info(f"Downloaded {name} successfully to: {save_path}")
-        
-        logging.info(f"All models downloaded successfully to {save_dir}")
-        
+        for model_name, model_path in model_paths.items():
+            logging.info(f"Loading model '{model_name}' from {model_path}")
+            with open(model_path, 'rb') as file:
+                models[model_name] = joblib.load(file)
+            logging.info(f"Model '{model_name}' loaded successfully")
+        return models
     except Exception as e:
-        logging.error(f"Error downloading models: {e}")
-        raise CustomException(e)
-
-
+        logging.error(f"Error loading models: {e}")
+        raise CustomException(e, sys)

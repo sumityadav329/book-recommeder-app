@@ -1,6 +1,9 @@
-from src.logger  import logging
+from src.logger import logging
 from src.data_loader import download_data, load_csv
-from src.model_loader import download_models_from_gdrive
+from src.data_preprocessor import preprocess_data
+from src.model_loader import load_models
+from src.model_trainer import train_model
+from src.model_saver import save_model
 from src.exception import CustomException
 
 def main():
@@ -10,22 +13,30 @@ def main():
         data_save_path = 'artifacts/books.csv'
         download_data(data_url, data_save_path)
 
-        # Loading the CSV file
-        df = load_csv(data_save_path)
+        # Load the data from the CSV file
+        books_df = load_csv(data_save_path)
 
-        # Dictionary of model names and their corresponding Google Drive URLs
-        model_urls = {
-            'vectorizer.pkl': 'https://drive.google.com/file/d/1uCCaB-gIFMZjY4abRS05ntAoZsSt2JMz/view?usp=sharing',
-            'cosine_sim.pkl': 'https://drive.google.com/file/d/1_xQac2HdebaB_AddOMWURWxB54i7dePs/view?usp=sharing'
+        # Preprocess the data
+        processed_books_df = preprocess_data(books_df)
+
+        # Train the model
+        vectorizer, cosine_sim = train_model(processed_books_df)
+
+        # Save the trained models
+        save_model(vectorizer, cosine_sim, 'artifacts')
+
+        # Paths to your models
+        model_paths = {
+            'vectorizer': 'artifacts/vectorizer.pkl',
+            'cosine_sim': 'artifacts/cosine_sim.pkl'
         }
-        
-        # Directory to save downloaded files
-        save_directory = './artifacts'
-        
-        # Download the models
-        download_models_from_gdrive(model_urls, save_directory)
-    
 
+        # Load the models
+        models = load_models(model_paths)
+
+        # Access the models
+        vectorizer = models['vectorizer']
+        cosine_sim = models['cosine_sim']
 
     except CustomException as e:
         logging.error(f"An error occurred: {e}")
