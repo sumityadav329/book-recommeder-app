@@ -1,5 +1,6 @@
 from src.logger  import logging
 from src.data_loader import download_data, load_csv
+from src.model_loader import download_models_from_gdrive
 from src.exception import CustomException
 
 def main():
@@ -11,6 +12,20 @@ def main():
 
         # Loading the CSV file
         df = load_csv(data_save_path)
+
+        # Dictionary of model names and their corresponding Google Drive URLs
+        model_urls = {
+            'vectorizer.pkl': 'https://drive.google.com/file/d/1uCCaB-gIFMZjY4abRS05ntAoZsSt2JMz/view?usp=sharing',
+            'cosine_sim.pkl': 'https://drive.google.com/file/d/1_xQac2HdebaB_AddOMWURWxB54i7dePs/view?usp=sharing'
+        }
+        
+        # Directory to save downloaded files
+        save_directory = './artifacts'
+        
+        # Download the models
+        download_models_from_gdrive(model_urls, save_directory)
+    
+
 
     except CustomException as e:
         logging.error(f"An error occurred: {e}")
