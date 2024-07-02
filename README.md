@@ -54,6 +54,8 @@ book-recommender-webapp/
 │   └── recommender.py               # Recommendation engine
 │
 ├── app.py                           # Streamlit web app
+├── setup.py                         # Setup this project as local package
+├── template.py                      # Template for creating folder structure
 ├── test.py                          # Test script for testing the entire process
 ├── requirements.txt                 # Dependencies
 ├── Dockerfile                       # Docker configuration for deploying the app
@@ -71,8 +73,8 @@ book-recommender-webapp/
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/book-recommender-webapp.git
-    cd book-recommender-webapp
+    git clone https://github.com/sumityadav329/book-recommender-app.git
+    cd book-recommender-app
     ```
 
 2. **Create a virtual environment and activate it**:
