@@ -3,7 +3,8 @@ import sys
 import joblib
 from src.logger import logging
 from src.exception import CustomException
-
+import streamlit as st
+@st.cache_data
 def load_models(model_paths: dict) -> dict:
     models = {}
     try:

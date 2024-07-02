@@ -4,6 +4,8 @@ import sys
 import pandas as pd
 from src.exception import CustomException
 from src.logger import logging
+import streamlit as st
+@st.cache_data
 
 def download_data(url: str, save_path: str):
     try:
@@ -16,6 +18,8 @@ def download_data(url: str, save_path: str):
     except Exception as e:
         logging.error(f"Error downloading data: {e}")
         raise CustomException(e, sys)
+    
+@st.cache_data
 
 def load_csv(file_path: str) -> pd.DataFrame:
     try:

@@ -3,6 +3,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from src.logger import logging
 from src.exception import CustomException
+import streamlit as st
+@st.cache_data
 
 def train_model(books_df):
     try:

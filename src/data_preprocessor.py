@@ -2,6 +2,8 @@ import pandas as pd
 import sys
 from src.logger import logging
 from src.exception import CustomException
+import streamlit as st
+@st.cache_data
 
 def preprocess_data(books_df: pd.DataFrame) -> pd.DataFrame:
     try:
