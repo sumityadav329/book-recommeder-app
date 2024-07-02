@@ -2,7 +2,7 @@
 
 ## App Link
 
-[Web App ](https://book-recommender-app-3q48.onrender.com/)
+[Click Here](https://book-recommender-app-3q48.onrender.com/)
 
 
 ## Overview
