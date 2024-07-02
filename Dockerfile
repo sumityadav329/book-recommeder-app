@@ -16,5 +16,8 @@ COPY . .
 # Expose the port that the application runs on
 EXPOSE 8501
 
+# Define environment variable
+ENV NAME BookRecommender
+
 # Command to run the application
 CMD ["streamlit", "run", "--server.enableCORS", "false", "app.py"]
