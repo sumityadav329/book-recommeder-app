@@ -2,8 +2,8 @@
 
 ## App Link
 
-```url(https://book-recommender-app-3q48.onrender.com/)
-```
+[https://book-recommender-app-3q48.onrender.com/](URL)
+
 
 ## Overview
 
