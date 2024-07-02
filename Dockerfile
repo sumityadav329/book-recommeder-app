@@ -23,5 +23,8 @@ EXPOSE 8501
 # Define environment variable
 ENV NAME BookRecommender
 
+# Create an empty .project-root file to signal the root directory
+RUN touch .project-root
+
 # Command to run the application inside the virtual environment
 CMD ["sh", "-c", ". venv/bin/activate && streamlit run --server.enableCORS false app.py"]
