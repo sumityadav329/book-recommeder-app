@@ -9,7 +9,7 @@ from src.exception import CustomException
 
 
 def main():
-    st.title('Book Recommender System')
+    st.title('Book Recommender Web App by Sumit Yadav')
 
     try:
         # URL for downloading data
